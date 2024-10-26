@@ -17,11 +17,8 @@
     - In body and body area communication (**Cal**)
         - Privacy and security risks and solutions
 - Application of biosensors in agricolture (**Cal**)
-    - Intelligent Plant Pathogen-Diagnostic         Biosensors
+    - Intelligent Plant Pathogen-Diagnostic Biosensors
     - Integration of modern age technology
 - Conclusion (**Cal**)
     - Future needs and prospects
         - Challenges and risks
-
-
-
