@@ -28,5 +28,4 @@
     - Integration of modern age technology
 * Slide 10 (Conclusion)
     - Future needs and prospects
-* Slide 11
     - Challenges and risks
