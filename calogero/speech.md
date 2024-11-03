@@ -1,4 +1,4 @@
-    The parts in **bold** are not present in the slides
+    The parts in bold are not present in the slides
 
 But if a nano-sensor can be applied outside, why not doing the same inside?
 
@@ -29,7 +29,7 @@ The integration of Body Area Networks systems within body devices and nanomachin
 
 **IoNT systems establish a direct target for a variety of potential attacks. Such** Attacks **may include**:
 - theft of private data **e.g., physiological data collected by either in-body**
-- disruption of medical applications **e.g., dedicated drug delivery applications controlled and coordinated by wearable computer**;
+- disruption of medical applications;
 - targeted modification of communication links on the nano communication level or at the gateway
 
 **In order to achieve a certain level of security, IoNT systems need to rely on a broad mixture of** Security solutions:
