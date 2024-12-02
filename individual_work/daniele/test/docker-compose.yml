@@ -1,0 +1,59 @@
+services:
+
+  
+  mqtt_broker:
+    image: eclipse-mosquitto:2.0.20-openssl
+    container_name: mqtt_broker
+    ports:
+      - "1883:1883" 
+      - "9001:9001" 
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - telegraf_influx_network
+
+  influxdb:
+    image: influxdb:2.7.10
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admin123
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=se4iot_token
+      - DOCKER_INFLUXDB_INIT_ORG=FLORA
+      - DOCKER_INFLUXDB_INIT_BUCKET=FLORA
+    volumes:
+      - influxdb2:/var/lib/influxdb2
+    networks:
+      - telegraf_influx_network
+
+  telegraf:
+    image: telegraf:1.32.3
+    container_name: telegraf
+    depends_on:
+      - mqtt_broker
+      - influxdb
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    networks:
+      - telegraf_influx_network
+
+  publisher:
+    build:
+      context: ./publisher
+    container_name: publisher
+    depends_on:
+      - mqtt_broker
+    networks:
+      - telegraf_influx_network
+
+volumes:
+  influxdb2: 
+    name: influxdb2
+
+networks:
+  telegraf_influx_network:
