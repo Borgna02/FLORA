@@ -41,7 +41,7 @@ def publish_data():
                 payload = json.dumps({"value": value})  # Serializza solo il valore in JSON
                 topic = TOPIC_STRUCTURE.format(farm_id=plant["farm_id"], plant_id=plant["plant_id"], sensor_type=sensor_type)
                 client.publish(topic, payload)
-                print(f"Published to {topic}: {payload}", flush=True)
+        print(f"Published! {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}", flush=True)
         time.sleep(5)  # Attendi 5 secondi prima di inviare nuovi dati
 
 if __name__ == "__main__":
