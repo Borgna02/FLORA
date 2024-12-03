@@ -1,5 +1,19 @@
 services:
 
+  node_red:
+    container_name: node_red
+    build:
+      context: ./nodered/
+      dockerfile: Dockerfile
+    image: nodered:latest
+    env_file: ./nodered/nodered.env
+      
+    ports:
+      - "1880:1880"
+    networks:
+      - telegraf_influx_network
+    volumes:
+      - ./nodered/data:/data
   
   mqtt_broker:
     image: eclipse-mosquitto:2.0.20-openssl
@@ -57,3 +71,4 @@ volumes:
 
 networks:
   telegraf_influx_network:
+    

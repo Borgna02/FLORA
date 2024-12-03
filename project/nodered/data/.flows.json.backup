@@ -1,0 +1,170 @@
+[
+    {
+        "id": "356ea6f4c1f619bc",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "662fd1abba56a419",
+        "type": "telegram bot",
+        "botname": "FLORA_BOT",
+        "usernames": "LucaMF",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "addressfamily": "",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "edf1038d908d0e6f",
+        "type": "influxdb",
+        "hostname": "172.30.0.102",
+        "port": "8086",
+        "protocol": "http",
+        "database": "forestsensors",
+        "name": "IoT_Influx",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://172.30.0.102:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "2741cadd25e52534",
+        "type": "telegram sender",
+        "z": "356ea6f4c1f619bc",
+        "name": "Send Telegram Message",
+        "bot": "662fd1abba56a419",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 790,
+        "y": 240,
+        "wires": [
+            [
+                "882931460110c834"
+            ]
+        ]
+    },
+    {
+        "id": "882931460110c834",
+        "type": "debug",
+        "z": "356ea6f4c1f619bc",
+        "name": "Debug Telegram Bot",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5fe460c06e16102f",
+        "type": "influxdb in",
+        "z": "356ea6f4c1f619bc",
+        "influxdb": "edf1038d908d0e6f",
+        "name": "Access InfluxDB",
+        "query": "from(bucket: \"flora\")\n|> range(start: -9s)\n|> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "FLORA",
+        "x": 340,
+        "y": 60,
+        "wires": [
+            [
+                "db556ada97593f4e"
+            ]
+        ]
+    },
+    {
+        "id": "db556ada97593f4e",
+        "type": "debug",
+        "z": "356ea6f4c1f619bc",
+        "name": "Debug InfluxDB",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "0315a041e107c085",
+        "type": "inject",
+        "z": "356ea6f4c1f619bc",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "6e89c57ff2394507"
+            ]
+        ]
+    },
+    {
+        "id": "6e89c57ff2394507",
+        "type": "function",
+        "z": "356ea6f4c1f619bc",
+        "name": "function 1",
+        "func": "const THRESHOLDS = JSON.parse(env.get('THRESHOLDS'));\nconst telegramMessage = {\n    payload:{\n        chatId: env.get('CHAT_ID'),\n        type:\"message\",\n        content: THRESHOLDS\n    }\n}\nreturn telegramMessage;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 240,
+        "wires": [
+            [
+                "2741cadd25e52534"
+            ]
+        ]
+    }
+]

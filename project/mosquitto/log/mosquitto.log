@@ -458,3 +458,135 @@
 1733132619: Client Publisher closed its connection.
 1733132620: mosquitto version 2.0.20 terminating
 1733132620: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1733237857: mosquitto version 2.0.20 starting
+1733237857: Config loaded from /mosquitto/config/mosquitto.conf.
+1733237857: Opening ipv4 listen socket on port 1883.
+1733237857: Opening ipv6 listen socket on port 1883.
+1733237857: mosquitto version 2.0.20 running
+1733237858: New connection from 172.22.0.6:38771 on port 1883.
+1733237858: New client connected from 172.22.0.6:38771 as Publisher (p2, c1, k60).
+1733237859: New connection from 172.22.0.5:49074 on port 1883.
+1733237859: New client connected from 172.22.0.5:49074 as Telegraf-Consumer-4IJcP (p2, c1, k60).
+1733238043: Client Telegraf-Consumer-4IJcP disconnected.
+1733238053: Client Publisher closed its connection.
+1733238053: mosquitto version 2.0.20 terminating
+1733238053: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1733238342: mosquitto version 2.0.20 starting
+1733238342: Config loaded from /mosquitto/config/mosquitto.conf.
+1733238342: Opening ipv4 listen socket on port 1883.
+1733238342: Opening ipv6 listen socket on port 1883.
+1733238342: mosquitto version 2.0.20 running
+1733238343: New connection from 172.23.0.5:53900 on port 1883.
+1733238343: New client connected from 172.23.0.5:53900 as Telegraf-Consumer-64229 (p2, c1, k60).
+1733238343: New connection from 172.23.0.6:35583 on port 1883.
+1733238343: New client connected from 172.23.0.6:35583 as Publisher (p2, c1, k60).
+1733238377: Client Telegraf-Consumer-64229 disconnected.
+1733238387: Client Publisher closed its connection.
+1733238387: mosquitto version 2.0.20 terminating
+1733238387: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1733238403: mosquitto version 2.0.20 starting
+1733238403: Config loaded from /mosquitto/config/mosquitto.conf.
+1733238403: Opening ipv4 listen socket on port 1883.
+1733238403: Opening ipv6 listen socket on port 1883.
+1733238403: mosquitto version 2.0.20 running
+1733238403: New connection from 172.23.0.5:58603 on port 1883.
+1733238403: New client connected from 172.23.0.5:58603 as Publisher (p2, c1, k60).
+1733238403: New connection from 172.23.0.6:34982 on port 1883.
+1733238403: New client connected from 172.23.0.6:34982 as Telegraf-Consumer-4s5PR (p2, c1, k60).
+1733238621: New connection from 172.23.0.1:56612 on port 1883.
+1733238621: Client <unknown> disconnected due to protocol error.
+1733238622: New connection from 172.23.0.1:56626 on port 1883.
+1733238622: Client <unknown> disconnected due to protocol error.
+1733239106: New connection from 172.23.0.1:41956 on port 1883.
+1733239106: New client connected from 172.23.0.1:41956 as nodered_cea1578af4b53ccc (p2, c1, k60).
+1733239265: Client nodered_cea1578af4b53ccc disconnected.
+1733239272: New connection from 172.23.0.1:41838 on port 1883.
+1733239272: New client connected from 172.23.0.1:41838 as nodered_c5b2ef47b41727d6 (p2, c1, k60).
+1733239350: Client nodered_c5b2ef47b41727d6 disconnected.
+1733239354: New connection from 172.23.0.1:53990 on port 1883.
+1733239354: New client connected from 172.23.0.1:53990 as nodered_5abc3cdc67170b30 (p2, c1, k60).
+1733239489: Client nodered_5abc3cdc67170b30 disconnected.
+1733239497: New connection from 172.23.0.1:41550 on port 1883.
+1733239497: New client connected from 172.23.0.1:41550 as nodered_d839ce391a60aa36 (p2, c1, k60).
+1733239556: Client nodered_d839ce391a60aa36 disconnected.
+1733239558: New connection from 172.23.0.1:42226 on port 1883.
+1733239558: New client connected from 172.23.0.1:42226 as nodered_829118440c742738 (p2, c1, k60).
+1733239784: Client nodered_829118440c742738 disconnected.
+1733239793: New connection from 172.23.0.1:44900 on port 1883.
+1733239793: New client connected from 172.23.0.1:44900 as nodered_7b920f23c0cea088 (p2, c1, k60).
+1733239845: Client nodered_7b920f23c0cea088 disconnected.
+1733239854: New connection from 172.23.0.1:41430 on port 1883.
+1733239854: New client connected from 172.23.0.1:41430 as nodered_b189b60a6d3108d5 (p2, c1, k60).
+1733239866: Client nodered_b189b60a6d3108d5 disconnected.
+1733239874: New connection from 172.23.0.1:54116 on port 1883.
+1733239874: New client connected from 172.23.0.1:54116 as nodered_60677ef3964ac34a (p2, c1, k60).
+1733239908: Client nodered_60677ef3964ac34a disconnected.
+1733239915: New connection from 172.23.0.1:58392 on port 1883.
+1733239915: New client connected from 172.23.0.1:58392 as nodered_4f19a57f24c03e05 (p2, c1, k60).
+1733239990: Client nodered_4f19a57f24c03e05 disconnected.
+1733239996: New connection from 172.23.0.1:60352 on port 1883.
+1733239996: New client connected from 172.23.0.1:60352 as nodered_5017e285a90d826f (p2, c1, k60).
+1733240204: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1733240228: Client nodered_5017e285a90d826f disconnected.
+1733240231: New connection from 172.23.0.1:43584 on port 1883.
+1733240231: New client connected from 172.23.0.1:43584 as nodered_22a6f5f2ea569278 (p2, c1, k60).
+1733240292: Client nodered_22a6f5f2ea569278 disconnected.
+1733240292: New connection from 172.23.0.1:39358 on port 1883.
+1733240292: New client connected from 172.23.0.1:39358 as nodered_a6ce39ddf9cdca13 (p2, c1, k60).
+1733240329: Client nodered_a6ce39ddf9cdca13 disconnected.
+1733240333: New connection from 172.23.0.1:49676 on port 1883.
+1733240333: New client connected from 172.23.0.1:49676 as nodered_2daca0231382c5cb (p2, c1, k60).
+1733240520: Client nodered_2daca0231382c5cb disconnected.
+1733240527: New connection from 172.23.0.1:44966 on port 1883.
+1733240527: New client connected from 172.23.0.1:44966 as nodered_e343a34dea0f5abb (p2, c1, k60).
+1733240549: Client nodered_e343a34dea0f5abb disconnected.
+1733240558: New connection from 172.23.0.1:57432 on port 1883.
+1733240558: New client connected from 172.23.0.1:57432 as nodered_1c4929cc1076b1c5 (p2, c1, k60).
+1733240719: Client nodered_1c4929cc1076b1c5 disconnected.
+1733240721: New connection from 172.23.0.1:43860 on port 1883.
+1733240721: New client connected from 172.23.0.1:43860 as nodered_56e9232ebf1364bb (p2, c1, k60).
+1733240784: Client nodered_56e9232ebf1364bb disconnected.
+1733240793: New connection from 172.23.0.1:34692 on port 1883.
+1733240793: New client connected from 172.23.0.1:34692 as nodered_0c0e01835ad7a8f9 (p2, c1, k60).
+1733240820: Client nodered_0c0e01835ad7a8f9 disconnected.
+1733240823: New connection from 172.23.0.1:41462 on port 1883.
+1733240823: New client connected from 172.23.0.1:41462 as nodered_90bbb87bc88be1d0 (p2, c1, k60).
+1733241141: Client nodered_90bbb87bc88be1d0 disconnected.
+1733241186: New connection from 172.23.0.1:48546 on port 1883.
+1733241186: New client connected from 172.23.0.1:48546 as nodered_a4cf8ca7f0f41802 (p2, c1, k60).
+1733241199: Client nodered_a4cf8ca7f0f41802 disconnected.
+1733241206: New connection from 172.23.0.1:46728 on port 1883.
+1733241206: New client connected from 172.23.0.1:46728 as nodered_1c2b10124da466c8 (p2, c1, k60).
+1733241478: Client nodered_1c2b10124da466c8 disconnected.
+1733242005: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1733243806: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1733243941: Client Telegraf-Consumer-4s5PR disconnected.
+1733243951: Client Publisher closed its connection.
+1733243951: mosquitto version 2.0.20 terminating
+1733243951: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1733243971: mosquitto version 2.0.20 starting
+1733243971: Config loaded from /mosquitto/config/mosquitto.conf.
+1733243971: Opening ipv4 listen socket on port 1883.
+1733243971: Opening ipv6 listen socket on port 1883.
+1733243971: mosquitto version 2.0.20 running
+1733243972: New connection from 172.24.0.5:42227 on port 1883.
+1733243972: New client connected from 172.24.0.5:42227 as Publisher (p2, c1, k60).
+1733243973: New connection from 172.24.0.6:40670 on port 1883.
+1733243973: New client connected from 172.24.0.6:40670 as Telegraf-Consumer-oZ72T (p2, c1, k60).
+1733244363: Client Telegraf-Consumer-oZ72T disconnected.
+1733244373: Client Publisher closed its connection.
+1733244373: mosquitto version 2.0.20 terminating
+1733244373: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1733244381: mosquitto version 2.0.20 starting
+1733244381: Config loaded from /mosquitto/config/mosquitto.conf.
+1733244381: Opening ipv4 listen socket on port 1883.
+1733244381: Opening ipv6 listen socket on port 1883.
+1733244381: mosquitto version 2.0.20 running
+1733244382: New connection from 172.25.0.5:59912 on port 1883.
+1733244382: New client connected from 172.25.0.5:59912 as Telegraf-Consumer-o8dlu (p2, c1, k60).
+1733244382: New connection from 172.25.0.6:35251 on port 1883.
+1733244382: New client connected from 172.25.0.6:35251 as Publisher (p2, c1, k60).
+1733244911: Client Telegraf-Consumer-o8dlu disconnected.
+1733244921: Client Publisher closed its connection.
+1733244922: mosquitto version 2.0.20 terminating
+1733244922: Saving in-memory database to /mosquitto/data//mosquitto.db.
