@@ -2,7 +2,7 @@
     {
         "id": "356ea6f4c1f619bc",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Telegram Alert System Flow",
         "disabled": false,
         "info": "",
         "env": []
@@ -53,12 +53,12 @@
         "id": "2741cadd25e52534",
         "type": "telegram sender",
         "z": "356ea6f4c1f619bc",
-        "name": "Send Telegram Message",
+        "name": "Send Alerts to User",
         "bot": "662fd1abba56a419",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 790,
-        "y": 260,
+        "x": 830,
+        "y": 160,
         "wires": [
             [
                 "882931460110c834"
@@ -78,8 +78,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 320,
+        "x": 980,
+        "y": 80,
         "wires": []
     },
     {
@@ -115,8 +115,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
-        "y": 60,
+        "x": 440,
+        "y": 80,
         "wires": []
     },
     {
@@ -141,7 +141,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "5fe460c06e16102f"
@@ -152,7 +152,7 @@
         "id": "6e89c57ff2394507",
         "type": "function",
         "z": "356ea6f4c1f619bc",
-        "name": "Check Data",
+        "name": "Check Sensor Data",
         "func": "const THRESHOLDS = JSON.parse(env.get('THRESHOLDS'));\nconst telegramMessage = {\n    payload:{\n        chatId: env.get('CHAT_ID'),\n        type:\"message\",\n        content: ``\n    }\n}\nconst sensorAlerts = new Map()\n\n\nmsg.payload.forEach(data => {\n    const value = data._value\n    const topic = data.topic\n    const sensorType = data.sensor_type\n    const threshold_sensor = THRESHOLDS[sensorType];\n    const splittedTopic = topic.split(\"/\")\n    // Initialize the count if it's not in the map\n    if (!sensorAlerts.has(topic)) {\n        sensorAlerts.set(topic, 0);\n    }\n\n    if (value > threshold_sensor) {\n        sensorAlerts.set(topic, sensorAlerts.get(topic) + 1);\n    }\n\n    if (sensorAlerts.get(topic) >= 1) {\n        telegramMessage.payload.content += `Alert! One or more ${sensorType} in ${splittedTopic[1]}, ${splittedTopic[2]} are exiding the threshold (${threshold_sensor})\\n\\n`;\n    }\n});\n\nreturn telegramMessage;",
         "outputs": 1,
         "timeout": 0,
@@ -160,30 +160,12 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 240,
+        "x": 590,
+        "y": 160,
         "wires": [
             [
                 "2741cadd25e52534"
             ]
-        ]
-    },
-    {
-        "id": "e7e139d7d4dfcfed",
-        "type": "function",
-        "z": "356ea6f4c1f619bc",
-        "name": "Analyze Potential Fire",
-        "func": "if (msg.payload.length > 0) {\n    let finaldMsg = \"\";\n\n    const newMsg = { payload: {} }\n    // Define thresholds for each _field\n    const thresholds = {\n        \"air_quality\": 350,\n        \"humidity\": 42,\n        \"light_intensity\": 700,\n        \"temperature\": 28\n    };\n\n    // Create a map to store the count of exceeded thresholds for each topic\n    const exceededThresholdsCount = new Map();\n\n    // Function to extract the simplified topic\n    function simplifyTopic(topic) {\n        return topic.replace(/^.*?\\/(forest_\\d+\\/area_\\d+)$/, \"$1\");\n    }\n\n    // Check data against thresholds and generate alerts\n    msg.payload.forEach(data => {\n        const field = data[\"_field\"];\n        const value = data[\"_value\"];\n        const threshold_sensor = thresholds[field];\n        const simplifiedTopic = simplifyTopic(data.topic);\n\n\n\n        // Initialize the count if it's not in the map\n        if (!exceededThresholdsCount.has(simplifiedTopic)) {\n            exceededThresholdsCount.set(simplifiedTopic, 0);\n        }\n\n        switch (field) {\n            case \"air_quality\":\n                if (value > threshold_sensor) {\n                    exceededThresholdsCount.set(simplifiedTopic, exceededThresholdsCount.get(simplifiedTopic) + 1);\n                }\n                break;\n            case \"humidity\":\n                if (value < threshold_sensor) {\n                    exceededThresholdsCount.set(simplifiedTopic, exceededThresholdsCount.get(simplifiedTopic) + 1);\n                }\n                break;\n            case \"light_intensity\":\n                if (value > threshold_sensor) {\n                    exceededThresholdsCount.set(simplifiedTopic, exceededThresholdsCount.get(simplifiedTopic) + 1);\n                }\n                break;\n            case \"temperature\":\n                if (value > threshold_sensor) {\n                    exceededThresholdsCount.set(simplifiedTopic, exceededThresholdsCount.get(simplifiedTopic) + 1);\n                }\n            break;\n            // Add additional cases for other fields if needed\n        }\n\n\n        // Increment the count for the current topic\n\n        // Check if the count is higher than 2\n        if (exceededThresholdsCount.get(simplifiedTopic) >= 2) {\n            finaldMsg += `Alert in ${simplifiedTopic}. ${exceededThresholdsCount.get(simplifiedTopic)} exceeding thresholds \\n`;\n            // Additional logic for sending alerts can be added here\n        }\n    });\n    newMsg.payload[`alert`] = finaldMsg;\n    node.warn(finaldMsg);\n    return newMsg\n}",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 460,
-        "wires": [
-            []
         ]
     }
 ]
