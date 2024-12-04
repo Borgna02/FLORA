@@ -18,11 +18,11 @@ PLANTS = [
 # Funzione per generare dati casuali per i sensori
 def generate_sensor_data(sensor_type):
     sensor_values = {
-        "temperature": round(random.uniform(15.0, 30.0), 2),
-        "humidity": round(random.uniform(30.0, 90.0), 2),
-        "chlorophyll_content": round(random.uniform(40.0, 70.0), 2),
-        "ph_level": round(random.uniform(5.5, 7.0), 2),
-        "height": round(random.uniform(50.0, 150.0), 2),  # Altezza in cm
+        "temperature": round(random.uniform(0.0, 45.0), 2), # Gradi Celsius
+        "humidity": round(random.uniform(15.0, 90.0), 2), # Percentuale
+        "chlorophyll_content": round(random.uniform(20.0, 80.0), 2), # µg/mL
+        "ph_level": round(random.uniform(0.0, 14.0), 2), # 0-14
+        "height": round(random.uniform(10.0, 150.0), 2),  # Altezza in cm
         "canopy_density": round(random.uniform(0.5, 1.0), 2),  # Percentuale
     }
     return sensor_values.get(sensor_type)

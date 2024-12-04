@@ -64,6 +64,21 @@ services:
       - mqtt_broker
     networks:
       - telegraf_influx_network
+  
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./grafana:/var/lib/grafana
+    networks:
+      - telegraf_influx_network
 
 volumes:
   influxdb2: 
