@@ -8,36 +8,39 @@ BROKER = "mqtt_broker"  # Nome del servizio nel docker-compose.yml
 PORT = 1883
 TOPIC_STRUCTURE = "/farm_{farm_id}/plant_{plant_id}/{sensor_type}"  # Struttura del topic
 
+
+
 # Lista di piante monitorate
-PLANTS = [
-    {"farm_id": "1", "plant_id": "001"},
-    {"farm_id": "1", "plant_id": "002"},
-    {"farm_id": "2", "plant_id": "003"},
-]
+
+def config_sensors():
+    with open('/app/sensors-config/sensors-config.json', 'r') as file:
+        return json.load(file)["sensors"]
+
+def config_plants():
+    with open('/app/sensors-config/plants-config.json', 'r') as file:
+        farms = json.load(file)["farms"]
+        plants = [{"farm_id": farm["farm_id"], "plant_id": plant["plant_id"]} for farm in farms for plant in farm["plants"]]
+        return plants
 
 # Funzione per generare dati casuali per i sensori
-def generate_sensor_data(sensor_type):
-    sensor_values = {
-        "temperature": round(random.uniform(0.0, 45.0), 2), # Gradi Celsius
-        "humidity": round(random.uniform(15.0, 90.0), 2), # Percentuale
-        "chlorophyll_content": round(random.uniform(20.0, 80.0), 2), # µg/mL
-        "ph_level": round(random.uniform(0.0, 14.0), 2), # 0-14
-        "height": round(random.uniform(10.0, 150.0), 2),  # Altezza in cm
-        "canopy_density": round(random.uniform(0.5, 1.0), 2),  # Percentuale
-    }
-    return sensor_values.get(sensor_type)
+def generate_sensor_data(sensors):
+    
+    sensor_values = {sensor["name"]: round(random.uniform(sensor["min"], sensor["max"]), 2) for sensor in sensors}
+    
+    return sensor_values
 
 # Connessione al broker
 client = mqtt.Client("Publisher")
 client.connect(BROKER, PORT)
 
 # Funzione per pubblicare dati su MQTT
-def publish_data():
-    sensor_types = ["temperature", "humidity", "chlorophyll_content", "ph_level", "height", "canopy_density"]
+def publish_data(sensors, plants):
+
     while True:
-        for plant in PLANTS:
-            for sensor_type in sensor_types:
-                value = generate_sensor_data(sensor_type)  # Genera il valore per il sensore
+        for plant in plants:
+            values = generate_sensor_data(sensors)
+            for sensor_type in values.keys():
+                value = values.get(sensor_type)  # Genera il valore per il sensore
                 payload = json.dumps({"value": value})  # Serializza solo il valore in JSON
                 topic = TOPIC_STRUCTURE.format(farm_id=plant["farm_id"], plant_id=plant["plant_id"], sensor_type=sensor_type)
                 client.publish(topic, payload)
@@ -45,4 +48,7 @@ def publish_data():
         time.sleep(5)  # Attendi 5 secondi prima di inviare nuovi dati
 
 if __name__ == "__main__":
-    publish_data()
+    plants = config_plants()
+    print(plants)
+    sensors = config_sensors()
+    publish_data(sensors, plants)

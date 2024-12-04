@@ -1,0 +1,58 @@
+{
+    "sensors": [
+        {
+            "name": "temperature",
+            "unit": "°C",
+            "min": 0,
+            "max": 50,
+            "threshold_min": 10,
+            "threshold_max": 30,
+            "chart_type": "disc"
+        },
+        {
+            "name": "humidity",
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "threshold_min": 40,
+            "threshold_max": 60,
+            "chart_type": "disc"
+        },
+        {
+            "name": "chlorophyll_content",
+            "unit": "ug/mL",
+            "min": 0,
+            "max": 100,
+            "threshold_min": 20,
+            "threshold_max": 80,
+            "chart_type": "line"
+        },
+        {
+            "name": "ph_level",
+            "unit": "pH",
+            "min": 0,
+            "max": 14,
+            "threshold_min": 5,
+            "threshold_max": 7,
+            "chart_type": "line"
+        },
+        {
+            "name": "height",
+            "unit": "cm",
+            "min": 0,
+            "max": 200,
+            "threshold_min": 10,
+            "threshold_max": 190,
+            "chart_type": "line"
+        },
+        {
+            "name": "canopy_density",
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "threshold_min": 30,
+            "threshold_max": 80,
+            "chart_type": "line"
+        }
+    ]
+}

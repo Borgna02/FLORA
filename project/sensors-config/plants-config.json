@@ -1,0 +1,35 @@
+{
+    "farms": [
+        {
+            "farm_id": "1",
+            "plants": [
+                {
+                    "plant_id": "001"
+                },
+                {
+                    "plant_id": "002"
+                },
+                {
+                    "plant_id": "003"
+                }
+            ]
+        },
+        {
+            "farm_id": "2",
+            "plants": [
+                {
+                    "plant_id": "004"
+                },
+                {
+                    "plant_id": "005"
+                },
+                {
+                    "plant_id": "006"
+                },
+                {
+                    "plant_id": "007"
+                }
+            ]
+        }
+    ]
+}

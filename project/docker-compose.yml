@@ -64,6 +64,8 @@ services:
       - mqtt_broker
     networks:
       - telegraf_influx_network
+    volumes:
+      - ./sensors-config:/app/sensors-config
   
   grafana:
     image: grafana/grafana
@@ -79,6 +81,8 @@ services:
       - ./grafana:/var/lib/grafana
     networks:
       - telegraf_influx_network
+
+
 
 volumes:
   influxdb2: 
