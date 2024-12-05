@@ -82,7 +82,20 @@ services:
     networks:
       - telegraf_influx_network
 
-
+  dashboard-setup:
+    build:
+      context: ./dashboard-setup
+      dockerfile: Dockerfile
+    container_name: dashboard-setup
+    environment:
+      - INFLUXDB_BUCKET=FLORA
+      - GRAFANA_URL=http://host.docker.internal:3000  # Grafana URL
+      - GRAFANA_API_KEY=glsa_m12wWLbW7AmJiZ8YKdWLbNLEcu0yarlk_9362f0ff  # API Key in Grafana
+    depends_on:
+      - grafana
+      - influxdb
+    volumes:
+      - ./sensors-config:/app/sensors-config
 
 volumes:
   influxdb2: 
