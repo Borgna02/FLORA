@@ -98,8 +98,7 @@
         "wires": [
             [
                 "db556ada97593f4e",
-                "6e89c57ff2394507",
-                "1d648116e4b98692"
+                "6e89c57ff2394507"
             ]
         ]
     },
@@ -154,7 +153,7 @@
         "type": "function",
         "z": "356ea6f4c1f619bc",
         "name": "Check Sensor Data",
-        "func": "const THRESHOLDS = JSON.parse(env.get('THRESHOLDS'));\nconst telegramMessage = {\n    payload:{\n        chatId: env.get('CHAT_ID'),\n        type:\"message\",\n        content: ``\n    }\n}\nconst sensorAlerts = new Map()\n\n\nmsg.payload.forEach(data => {\n    const value = data._value\n    const topic = data.topic\n    const sensorType = data.sensor_type\n    const threshold_sensor = THRESHOLDS[sensorType];\n    const splittedTopic = topic.split(\"/\")\n    // Initialize the count if it's not in the map\n    if (!sensorAlerts.has(topic)) {\n        sensorAlerts.set(topic, 0);\n    }\n\n    if (value > threshold_sensor) {\n        sensorAlerts.set(topic, sensorAlerts.get(topic) + 1);\n    }\n\n    if (sensorAlerts.get(topic) >= 1) {\n        telegramMessage.payload.content += `Alert! One or more ${sensorType} in ${splittedTopic[1]}, ${splittedTopic[2]} are exiding the threshold (${threshold_sensor})\\n\\n`;\n    }\n});\n\nreturn telegramMessage;",
+        "func": "const THRESHOLDS = JSON.parse(env.get('SENSORS'));\nconst sensorsThresholds = {}\nTHRESHOLDS.sensors.map(sensorConfig =>{\n    sensorsThresholds[sensorConfig.name] = {\n        min:sensorConfig.threshold_min,\n        max:sensorConfig.threshold_max,\n        unit:sensorConfig.unit\n    }\n})\nconst telegramMessage = {\n    payload:{\n        chatId: env.get('CHAT_ID'),\n        type:\"message\",\n        content: ``\n    }\n}\n\nconst sensorAlerts = new Map()\n\n\nmsg.payload.forEach(data => {\n    const value = data._value\n    const topic = data.topic\n    const sensorType = data.sensor_type\n    const threshold_sensor = sensorsThresholds[sensorType];\n    if (value > threshold_sensor.max || value < threshold_sensor.min) {\n        sensorAlerts.set(topic, value);\n    }\n});\nsensorAlerts.forEach((value, key) =>{\n    const splittedTopic = key.split(\"/\")\n    telegramMessage.payload.content += \n        `Alert for ${splittedTopic[2]} in ${splittedTopic[1]}!\n        A value of ${value}${sensorsThresholds[splittedTopic[3]].unit} for ${splittedTopic[3]} was detected!\\n`\n})\nreturn telegramMessage;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -167,24 +166,6 @@
             [
                 "2741cadd25e52534"
             ]
-        ]
-    },
-    {
-        "id": "1d648116e4b98692",
-        "type": "function",
-        "z": "356ea6f4c1f619bc",
-        "name": "function 1",
-        "func": "const SENSORS = JSON.parse(env.get('SENSORS'));\nconsole.log(SENSORS)\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 560,
-        "y": 320,
-        "wires": [
-            []
         ]
     }
 ]
