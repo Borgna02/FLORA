@@ -5,15 +5,19 @@ services:
     build:
       context: ./nodered/
       dockerfile: Dockerfile
-    image: nodered:latest
-    env_file: ./nodered/nodered.env
-      
+    environment:
+      - BOT_TOKEN=7624803090:AAFl-2ZR2vFxRO37Z9KyyGIROTHloFWkPyM
+      - CHAT_ID=5663655397
+      - TZ=TZ=Europe/Amsterdam
+      - INFLUXDB_TOKEN=se4iot_token
     ports:
       - "1880:1880"
     networks:
       - telegraf_influx_network
     volumes:
       - ./nodered/data:/data
+      - ./sensors-config/sensors-config.json:/config/sensors-config.json:ro
+  
   
   mqtt_broker:
     image: eclipse-mosquitto:2.0.20-openssl

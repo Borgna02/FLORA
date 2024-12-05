@@ -53,12 +53,12 @@
         "id": "2741cadd25e52534",
         "type": "telegram sender",
         "z": "356ea6f4c1f619bc",
-        "name": "Send Telegram Message",
+        "name": "Send Alerts to User",
         "bot": "662fd1abba56a419",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 810,
-        "y": 260,
+        "x": 830,
+        "y": 160,
         "wires": [
             [
                 "882931460110c834"
@@ -78,8 +78,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 320,
+        "x": 980,
+        "y": 80,
         "wires": []
     },
     {
@@ -98,7 +98,8 @@
         "wires": [
             [
                 "db556ada97593f4e",
-                "6e89c57ff2394507"
+                "6e89c57ff2394507",
+                "1d648116e4b98692"
             ]
         ]
     },
@@ -115,8 +116,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
-        "y": 60,
+        "x": 440,
+        "y": 80,
         "wires": []
     },
     {
@@ -141,7 +142,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 130,
-        "y": 100,
+        "y": 160,
         "wires": [
             [
                 "5fe460c06e16102f"
@@ -160,12 +161,30 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
-        "y": 240,
+        "x": 590,
+        "y": 160,
         "wires": [
             [
                 "2741cadd25e52534"
             ]
+        ]
+    },
+    {
+        "id": "1d648116e4b98692",
+        "type": "function",
+        "z": "356ea6f4c1f619bc",
+        "name": "function 1",
+        "func": "const SENSORS = JSON.parse(env.get('SENSORS'));\nconsole.log(SENSORS)\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 320,
+        "wires": [
+            []
         ]
     }
 ]

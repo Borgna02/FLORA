@@ -1,3 +1,4 @@
 /project/sensors-config/dashboard.json
-/project/mosquitto/data/mosquitto.db
-/project/mosquitto/log/mosquitto.log
+/project/mosquitto/data/*
+/project/mosquitto/log/*
+/project/nodered/data/.npm/*
