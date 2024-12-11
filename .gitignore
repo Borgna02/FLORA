@@ -2,3 +2,5 @@
 /project/mosquitto/data/*
 /project/mosquitto/log/*
 /project/nodered/data/.npm/*
+/project/grafana/grafana.db
+*.idea
