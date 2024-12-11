@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - BOT_TOKEN=7624803090:AAFl-2ZR2vFxRO37Z9KyyGIROTHloFWkPyM
-      - CHAT_ID=5663655397
+      - CHAT_ID=-4723398728
       - TZ=TZ=Europe/Amsterdam
       - INFLUXDB_TOKEN=se4iot_token
     ports:

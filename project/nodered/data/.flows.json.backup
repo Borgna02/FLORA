@@ -167,23 +167,5 @@
                 "2741cadd25e52534"
             ]
         ]
-    },
-    {
-        "id": "1d648116e4b98692",
-        "type": "function",
-        "z": "356ea6f4c1f619bc",
-        "name": "function 1",
-        "func": "const SENSORS = JSON.parse(env.get('SENSORS'));\nconsole.log(SENSORS)\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 560,
-        "y": 320,
-        "wires": [
-            []
-        ]
     }
 ]
