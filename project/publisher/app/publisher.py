@@ -9,6 +9,7 @@ from sensors.humidity_sensor import HumiditySensor
 from sensors.canopy_analyzer import CanopyAnalyzer
 from sensors.chlorophyll_fluorescence_sensor import ChlorophyllFluorescenceSensor
 from sensors.ultrasonic_sensor import UltrasonicSensor
+from sensors.generic_sensor import GenericSensor
 
 ENVIRONMENT_KEY = "environment"
 FARMS_KEY = "farms"
@@ -26,7 +27,7 @@ TOPIC_STRUCTURE = "/farm_{farm_id}/plant_{plant_id}/{sensor_type}"  # Struttura 
 def retrieve_sensor_data():
     with open('/app/sensors-config/sensors-config.json', 'r') as file:
         sensors_data = json.load(file)["sensors"]
-        return [sensor["name"] for sensor in sensors_data]
+        return [{'name': sensor["name"], 'boundaries': (sensor["min"], sensor["max"])} for sensor in sensors_data]
 
 
 def field_config():
@@ -45,8 +46,8 @@ def field_config():
                             PLANT_ID_KEY: plant[PLANT_ID_KEY],
                             SENSORS_KEY:
                                 {
-                                    sensor_name: handle_sensor_creation(sensor_name, environment)
-                                    for sensor_name in configured_sensors
+                                    sensor_data['name']: handle_sensor_creation(sensor_data['name'], environment, sensor_data['boundaries'])
+                                    for sensor_data in configured_sensors
                                 }
 
                         }
@@ -56,7 +57,7 @@ def field_config():
         }
 
 
-def handle_sensor_creation(sensor_name, environment):
+def handle_sensor_creation(sensor_name, environment, boundaries=None):
     match sensor_name:
         case "temperature":
             return TemperatureSensor(environment)
@@ -70,6 +71,8 @@ def handle_sensor_creation(sensor_name, environment):
             return UltrasonicSensor(environment)
         case "canopy_density":
             return CanopyAnalyzer(environment)
+        case _:
+            return GenericSensor(boundaries)
 
 
 # Connessione al broker

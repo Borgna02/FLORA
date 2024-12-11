@@ -53,6 +53,24 @@
             "threshold_min": 30,
             "threshold_max": 80,
             "chart_type": "line"
+        },
+        {
+            "name": "soil_moisture",
+            "unit": "%",
+            "min": 0,
+            "max": 100,
+            "threshold_min": 30,
+            "threshold_max": 70,
+            "chart_type": "line"
+        },
+        {
+            "name": "light_intensity",
+            "unit": "lux",
+            "min": 0,
+            "max": 1000,
+            "threshold_min": 100,
+            "threshold_max": 800,
+            "chart_type": "disc"
         }
     ]
 }
