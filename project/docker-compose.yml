@@ -72,34 +72,26 @@ services:
       - ./sensors-config:/app/sensors-config
   
   grafana:
-    image: grafana/grafana
+    build:
+      context: ./grafana
+      dockerfile: Dockerfile
     container_name: grafana
     depends_on:
       - influxdb
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
+      - INFLUXDB_BUCKET=FLORA
+      - GRAFANA_API_KEY=glsa_m12wWLbW7AmJiZ8YKdWLbNLEcu0yarlk_9362f0ff  # API Key in Grafana
+      - GRAFANA_URL=http://localhost:3000  # Grafana URL
     ports:
       - '3000:3000'
     volumes:
       - ./grafana:/var/lib/grafana
+      - ./sensors-config:/app/sensors-config
     networks:
       - telegraf_influx_network
 
-  dashboard-setup:
-    build:
-      context: ./dashboard-setup
-      dockerfile: Dockerfile
-    container_name: dashboard-setup
-    environment:
-      - INFLUXDB_BUCKET=FLORA
-      - GRAFANA_URL=http://host.docker.internal:3000  # Grafana URL
-      - GRAFANA_API_KEY=glsa_m12wWLbW7AmJiZ8YKdWLbNLEcu0yarlk_9362f0ff  # API Key in Grafana
-    depends_on:
-      - grafana
-      - influxdb
-    volumes:
-      - ./sensors-config:/app/sensors-config
 
 volumes:
   influxdb2: 

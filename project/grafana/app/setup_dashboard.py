@@ -230,8 +230,6 @@ if __name__ == "__main__":
     if sensors:
         print(f"Found sensor types: {sensor_types}", flush=True)
         dashboard = create_dashboard(sensors)
-        with open('/app/sensors-config/dashboard.json', 'w') as file:
-            json.dump(dashboard, file, indent=4)
         upload_dashboard(dashboard)
     else:
         print("No sensor types found.", flush=True)

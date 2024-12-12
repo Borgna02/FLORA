@@ -71,6 +71,15 @@
             "threshold_min": 100,
             "threshold_max": 800,
             "chart_type": "disc"
+        },
+        {
+            "name": "wind_speed",
+            "unit": "m/s",
+            "min": 0,
+            "max": 10,
+            "threshold_min": 1,
+            "threshold_max": 5,
+            "chart_type": "disc"
         }
     ]
 }
