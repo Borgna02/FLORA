@@ -3,9 +3,9 @@
         {
             "name": "temperature",
             "unit": "°C",
-            "min": 0,
+            "min": -20,
             "max": 50,
-            "threshold_min": 10,
+            "threshold_min": 5,
             "threshold_max": 30,
             "chart_type": "disc"
         },
@@ -13,18 +13,18 @@
             "name": "humidity",
             "unit": "%",
             "min": 0,
-            "max": 100,
-            "threshold_min": 40,
-            "threshold_max": 60,
+            "max": 150,
+            "threshold_min": 0,
+            "threshold_max": 95,
             "chart_type": "disc"
         },
         {
             "name": "chlorophyll_content",
             "unit": "ug/mL",
             "min": 0,
-            "max": 100,
+            "max": 150,
             "threshold_min": 20,
-            "threshold_max": 80,
+            "threshold_max": 120,
             "chart_type": "line"
         },
         {
@@ -32,8 +32,8 @@
             "unit": "pH",
             "min": 0,
             "max": 14,
-            "threshold_min": 5,
-            "threshold_max": 7,
+            "threshold_min": 0,
+            "threshold_max": 12,
             "chart_type": "line"
         },
         {
@@ -41,8 +41,8 @@
             "unit": "cm",
             "min": 0,
             "max": 200,
-            "threshold_min": 10,
-            "threshold_max": 190,
+            "threshold_min": 0,
+            "threshold_max": 150,
             "chart_type": "line"
         },
         {
