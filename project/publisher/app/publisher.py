@@ -27,7 +27,7 @@ TOPIC_STRUCTURE = "/farm_{farm_id}/plant_{plant_id}/{sensor_type}"  # Struttura 
 def retrieve_sensor_data():
     with open('/app/sensors-config/sensors-config.json', 'r') as file:
         sensors_data = json.load(file)["sensors"]
-        return [{'name': sensor["name"], 'boundaries': (sensor["min"], sensor["max"])} for sensor in sensors_data]
+        return [{'name': sensor["name"], 'boundaries': (sensor["min"], sensor["max"]), 'thresholds': (sensor["threshold_min"], sensor["threshold_max"])} for sensor in sensors_data]
 
 
 def field_config():
@@ -46,7 +46,7 @@ def field_config():
                             PLANT_ID_KEY: plant[PLANT_ID_KEY],
                             SENSORS_KEY:
                                 {
-                                    sensor_data['name']: handle_sensor_creation(sensor_data['name'], environment, sensor_data['boundaries'])
+                                    sensor_data['name']: handle_sensor_creation(sensor_data['name'], environment, sensor_data['boundaries'], sensor_data['thresholds'])
                                     for sensor_data in configured_sensors
                                 }
 
@@ -57,7 +57,7 @@ def field_config():
         }
 
 
-def handle_sensor_creation(sensor_name, environment, boundaries=None):
+def handle_sensor_creation(sensor_name, environment, boundaries=None, thresholds=None):
     match sensor_name:
         case "temperature":
             return TemperatureSensor(environment)
@@ -72,7 +72,7 @@ def handle_sensor_creation(sensor_name, environment, boundaries=None):
         case "canopy_density":
             return CanopyAnalyzer(environment)
         case _:
-            return GenericSensor(boundaries)
+            return GenericSensor(boundaries, thresholds)
 
 
 # Connessione al broker
