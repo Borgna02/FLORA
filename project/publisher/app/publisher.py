@@ -88,7 +88,7 @@ def publish_data(field):
         for plant in field[FARMS_KEY]:
             for sensor_type in plant[PLANT_KEY][SENSORS_KEY].keys():
                 sensor = plant[PLANT_KEY][SENSORS_KEY][sensor_type]
-                payload = json.dumps({"value": sensor.read()})  # Serializza solo il valore in JSON
+                payload = json.dumps({"value": round(sensor.read(), 2)})  # Serializza solo il valore in JSON
                 topic = TOPIC_STRUCTURE.format(farm_id=plant[FARM_ID_KEY], plant_id=plant[PLANT_KEY][PLANT_ID_KEY],
                                                sensor_type=sensor_type)
                 client.publish(topic, payload)
