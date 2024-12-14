@@ -4,6 +4,11 @@ import random
 from domain.geographical_area import GeographicalArea
 from lib.utils import *
 
+PH_RANGE = {
+    MIN_THRESHOLD_KEY: 0.0,
+    MAX_THRESHOLD_KEY: 14.0
+}
+
 PH_LEVEL_BY_SEASON = {
     Season.WINTER: {
         GeographicalArea.NORTH: {
@@ -75,4 +80,4 @@ class PHSensor(Sensor):
         current_temperature = self.environment.current_temperature
         ph_reading = random.uniform(PH_LEVEL_BY_SEASON[current_season][geographical_area][MIN_THRESHOLD_KEY], PH_LEVEL_BY_SEASON[current_season][geographical_area][MAX_THRESHOLD_KEY])
         ph_reading += (current_temperature * 0.2)  # add noise given by temperature value
-        return ph_reading
+        return min(PH_RANGE[MAX_THRESHOLD_KEY], ph_reading)
