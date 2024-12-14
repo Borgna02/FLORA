@@ -88,7 +88,7 @@
         "z": "356ea6f4c1f619bc",
         "influxdb": "edf1038d908d0e6f",
         "name": "Access InfluxDB",
-        "query": "from(bucket: \"FLORA\")\n|> range(start: -9s)\n|> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")",
+        "query": "from(bucket: \"FLORA\")\n|> range(start: -10s)\n|> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")",
         "rawOutput": false,
         "precision": "",
         "retentionPolicy": "",
