@@ -8,7 +8,6 @@ The goal of the system is to streamline agricultural processes and empower farme
 The system will analyze the data and alert the farmer in case of hazards concerning plant health like rotting, lack of water or excessive exposure to sunlight.
 
 
-
 ## Project build and deploy steps
 To build and run the project use:
 
