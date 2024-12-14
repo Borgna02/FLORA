@@ -96,7 +96,7 @@ def publish_data(field):
                                                sensor_type=sensor_type)
                 client.publish(topic, payload)
         print(f"Published! {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())}", flush=True)
-        time.sleep(5)  # Attendi 5 secondi prima di inviare nuovi dati
+        time.sleep(15)  # Attendi 15 secondi prima di inviare nuovi dati
 
 
 if __name__ == "__main__":
