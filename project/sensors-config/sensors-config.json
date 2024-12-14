@@ -50,7 +50,7 @@
             "unit": "%",
             "min": 0,
             "max": 100,
-            "threshold_min": 30,
+            "threshold_min": 0,
             "threshold_max": 80,
             "chart_type": "line"
         },
