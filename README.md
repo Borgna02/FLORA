@@ -9,10 +9,14 @@ The system will analyze the data and alert the farmer in case of hazards concern
 
 
 ## Project build and deploy steps
-To build and run the project use:
+After cloning the repository write in the terminal: 
+
+    cd ./project
+
+To build and run the project execute:
 
     docker-compose up --build
 
-To delete all the containers use:
+To delete all the containers execute:
 
     docker-compose down -v

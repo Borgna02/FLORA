@@ -1,5 +1,5 @@
 # Usa l'immagine di Grafana come base
-FROM grafana/grafana:latest
+FROM grafana/grafana:11.4.0
 USER root
 # Aggiorna i pacchetti e installa Python 3.9 con py3-pip e virtualenv
 RUN apk update && apk add --no-cache \
@@ -15,9 +15,6 @@ RUN python3 -m venv /opt/venv && \
 
 # Attiva l'ambiente virtuale di default
 ENV PATH="/opt/venv/bin:$PATH"
-
-# Installare librerie necessarie
-RUN pip install requests
 
 # Imposta la working directory all'interno del container
 WORKDIR /app
