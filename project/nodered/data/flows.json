@@ -167,40 +167,5 @@
                 "2741cadd25e52534"
             ]
         ]
-    },
-    {
-        "id": "f2271878c08d11cd",
-        "type": "telegram receiver",
-        "z": "356ea6f4c1f619bc",
-        "name": "",
-        "bot": "662fd1abba56a419",
-        "saveDataDir": "",
-        "filterCommands": false,
-        "x": 130,
-        "y": 240,
-        "wires": [
-            [
-                "5cbd1854613c1eef"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "5cbd1854613c1eef",
-        "type": "function",
-        "z": "356ea6f4c1f619bc",
-        "name": "function 1",
-        "func": "console.log(JSON.stringify(msg))\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 240,
-        "wires": [
-            []
-        ]
     }
 ]

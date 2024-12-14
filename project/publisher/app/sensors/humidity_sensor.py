@@ -73,7 +73,7 @@ class HumiditySensor(Sensor):
         if self.environment.is_raining:
             return 100 - random.uniform(0.0, 5.0)
 
-        if self.environment.is_raining:
+        if self.environment.is_snowing:
             return 80 + random.uniform(0.0, 20.0)
 
         geographical_area = self.environment.geographical_area
