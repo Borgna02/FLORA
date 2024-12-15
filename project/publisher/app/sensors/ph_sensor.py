@@ -62,7 +62,7 @@ PH_LEVEL_BY_SEASON = {
             MAX_THRESHOLD_KEY: 12.5
         },
         GeographicalArea.SOUTH: {
-            MIN_THRESHOLD_KEY: 13.0,
+            MIN_THRESHOLD_KEY: 11.0,
             MAX_THRESHOLD_KEY: 14.0
         }
     }
